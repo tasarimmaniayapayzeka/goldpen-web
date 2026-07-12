@@ -140,7 +140,7 @@
   .duo.flip{grid-template-columns:.95fr 1.05fr}
   .duo-img{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--hair2);background:#161208}
   .duo-img::after{content:"";position:absolute;inset:0;background:linear-gradient(200deg,rgba(201,163,67,.16),transparent 45%),radial-gradient(120% 90% at 50% 50%,transparent 55%,rgba(16,12,6,.42));pointer-events:none}
-  .duo-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.16,1,.3,1);filter:sepia(.3) saturate(.78) brightness(.9) contrast(1.05)}
+  .duo-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
   .duo-poster{background:transparent}
   .duo-poster::after{content:none}
   .duo-poster img{height:auto;object-fit:contain;filter:none}
@@ -177,9 +177,11 @@
   /* ---------- galeri ---------- */
   .gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:14px}
   .gal a{border-radius:16px;overflow:hidden;position:relative;border:1px solid var(--hair2);background:#161208}
-  .gal a::after{content:"";position:absolute;inset:0;background:linear-gradient(200deg,rgba(201,163,67,.14),transparent 45%),radial-gradient(130% 100% at 50% 50%,transparent 58%,rgba(16,12,6,.4));pointer-events:none}
+  .gal a::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 58%,rgba(10,9,8,.28) 80%,rgba(10,9,8,.66));box-shadow:inset 0 0 0 1px rgba(201,163,67,.2);border-radius:16px;pointer-events:none}
+  .gal a::before{content:"GOLD ◆ PEN";position:absolute;left:16px;bottom:12px;z-index:2;font-family:var(--serif);font-weight:600;font-size:11.5px;letter-spacing:.34em;color:var(--champ);text-shadow:0 1px 8px rgba(0,0,0,.5);pointer-events:none}
   .gal a:nth-child(1){grid-column:span 2;grid-row:span 2}
-  .gal img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.16,1,.3,1),filter .6s;filter:sepia(.3) saturate(.78) brightness(.9) contrast(1.05)}
+  .gal a:nth-child(1)::before{font-size:14px}
+  .gal img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.16,1,.3,1)}
   .gal a:hover img{transform:scale(1.06)}
 
   /* ---------- referans marquee ---------- */
