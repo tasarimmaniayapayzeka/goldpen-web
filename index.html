@@ -35,6 +35,8 @@
   .topbar{background:linear-gradient(90deg,#0d0b07,#191307,#0d0b07);border-bottom:1px solid var(--hair2);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2)}
   .topbar .wrap{display:flex;justify-content:space-between;align-items:center;min-height:34px;gap:12px}
   .topbar span b{color:var(--champ);font-weight:600}
+  .topbar i{font-style:normal}
+  .tb-kisa{display:none}
   header{position:sticky;top:0;z-index:90;backdrop-filter:blur(14px);background:rgba(10,9,8,.55);border-bottom:1px solid transparent;transition:background .4s,border-color .4s}
   header.dark{background:rgba(10,9,8,.92);border-bottom-color:var(--hair2)}
   .nav{display:flex;align-items:center;justify-content:space-between;min-height:74px;gap:20px}
@@ -322,7 +324,8 @@
     .quiz{padding:34px 22px}
     section{padding:76px 0}
     .topbar .wrap{justify-content:center}.topbar .tb2{display:none}
-    .topbar{font-size:10.5px}.topbar .wrap span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .topbar{font-size:11px}.topbar .wrap span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .tb-uzun{display:none}.tb-kisa{display:inline}
   }
   @media(max-width:560px){
     .areas{grid-template-columns:1fr 1fr;gap:12px}
@@ -353,7 +356,7 @@
 <!-- üst şerit -->
 <div class="topbar">
   <div class="wrap">
-    <span>✦ <b>Türkiye'de bir ilk</b> — Güzellik merkezleri &amp; klinikler için</span>
+    <span>✦ <b>Türkiye'de bir ilk</b><i class="tb-uzun"> — Güzellik merkezleri &amp; klinikler için</i><i class="tb-kisa"> — Kliniklere özel</i></span>
     <span class="tb2">Türkiye Distribütörü: <b>MediEst Group</b> &nbsp;·&nbsp; <a href="tel:+905332853077"><b>0533 285 30 77</b></a></span>
   </div>
 </div>
