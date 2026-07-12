@@ -32,7 +32,10 @@ http.createServer((req, res) => {
       res.end('404 Bulunamadı: ' + urlPath);
       return;
     }
-    res.writeHead(200, { 'Content-Type': MIME[path.extname(filePath).toLowerCase()] || 'application/octet-stream' });
+    res.writeHead(200, {
+      'Content-Type': MIME[path.extname(filePath).toLowerCase()] || 'application/octet-stream',
+      'Cache-Control': 'no-store', // dev: her istekte taze içerik
+    });
     res.end(data);
   });
 }).listen(PORT, () => console.log('Gold Pen dev sunucusu: http://localhost:' + PORT));
