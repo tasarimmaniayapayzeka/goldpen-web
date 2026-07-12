@@ -228,6 +228,11 @@
   .cmp .no{color:#6e6a60}
   .cmp-note{text-align:center;color:var(--muted);font-size:13px;font-weight:300;margin-top:18px}
 
+  /* ---------- serum vitrini ---------- */
+  .serum-vitrin{margin-top:28px;border-radius:20px;overflow:hidden;border:1px solid var(--hair2);background:#eceef0;position:relative}
+  .serum-vitrin img{width:100%;display:block}
+  .serum-vitrin::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 90px rgba(16,12,6,.18);pointer-events:none}
+
   /* ---------- yatırım / ROI ---------- */
   .roi{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
   .roi-calc{background:linear-gradient(165deg,var(--panel2),#120f08);border:1px solid var(--hair);border-radius:22px;padding:38px 34px}
@@ -579,9 +584,12 @@
     <div class="serums">
       <div class="serum rv"><div class="sv">Solüsyon 01</div><h3>Anti-Aging</h3><p>Kırışıklık karşıtı yoğun bakım formülü</p></div>
       <div class="serum rv" style="transition-delay:.08s"><div class="sv">Solüsyon 02</div><h3>Brightening</h3><p>Ton eşitleyici, aydınlatıcı etki</p></div>
-      <div class="serum rv" style="transition-delay:.16s"><div class="sv">Solüsyon 03</div><h3>Hyaluronic</h3><p>Derin nemlendirme ve dolgunluk</p></div>
+      <div class="serum rv" style="transition-delay:.16s"><div class="sv">Solüsyon 03</div><h3>Hair-Revit</h3><p>Saç canlandırıcı ve güçlendirici</p></div>
       <div class="serum rv" style="transition-delay:.24s"><div class="sv">Solüsyon 04</div><h3>Firming</h3><p>Sıkılaştırıcı, kontur destekleyici</p></div>
-      <div class="serum rv" style="transition-delay:.32s"><div class="sv">Solüsyon 05</div><h3>Hair-Revit</h3><p>Saç canlandırıcı ve güçlendirici</p></div>
+      <div class="serum rv" style="transition-delay:.32s"><div class="sv">Solüsyon 05</div><h3>Hyaluronic</h3><p>Derin nemlendirme ve dolgunluk</p></div>
+    </div>
+    <div class="serum-vitrin rv">
+      <img src="assets/gorseller/goldpen-mezoeffect.jpg" alt="mezoeffect mezocomplex solüsyon ailesi — Antiaging, Brightening, Hair-Revit, Firming ve Hyaluronic Acid kutu ve flakonları" loading="lazy">
     </div>
   </div>
 </section>
