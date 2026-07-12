@@ -159,6 +159,8 @@
   .area .aico{font-family:var(--serif);font-size:30px;color:var(--gold2);margin-bottom:14px}
   .area h3{font-size:15.5px;font-weight:600;color:var(--champ);margin-bottom:8px}
   .area p{font-size:13px;color:var(--muted);font-weight:300;line-height:1.55}
+  .area-guvence{display:none;border-color:var(--hair);background:linear-gradient(165deg,rgba(201,163,67,.16),rgba(201,163,67,.04))}
+  .area-guvence h3{background:linear-gradient(100deg,#9a7b2d,#e8cd7f 50%,#9a7b2d);-webkit-background-clip:text;background-clip:text;color:transparent}
 
   /* ---------- serum serisi ---------- */
   .serums{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
@@ -322,6 +324,7 @@
   }
   @media(max-width:560px){
     .areas{grid-template-columns:1fr 1fr;gap:12px}
+    .area-guvence{display:block}
     .serums{grid-template-columns:1fr 1fr;gap:12px}
     .hero-cta .btn{width:100%}
     .tcard{padding:28px 22px}
@@ -589,6 +592,7 @@
       <div class="area rv" style="transition-delay:.16s"><div class="aico">✦</div><h3>Anti-Aging</h3><p>Kolajen desteğiyle genç görünüm</p></div>
       <div class="area rv" style="transition-delay:.24s"><div class="aico">✦</div><h3>Cilt Tonu Eşitleme</h3><p>Aydınlık ve eşit bir ten</p></div>
       <div class="area rv" style="transition-delay:.32s"><div class="aico">✦</div><h3>Saç Uygulaması</h3><p>Kökten güçlenen saçlar</p></div>
+      <div class="area area-guvence rv" style="transition-delay:.4s"><div class="aico">◆</div><h3>MediEst Güvencesi</h3><p>Türkiye distribütörü kalitesi ve güvencesiyle</p></div>
     </div>
   </div>
 </section>
