@@ -248,7 +248,7 @@
   .cmp-note{text-align:center;color:var(--muted);font-size:13px;font-weight:300;margin-top:18px}
 
   /* ---------- serum vitrini ---------- */
-  .serum-vitrin{margin-top:28px;border-radius:20px;overflow:hidden;border:1px solid var(--hair2);background:#eceef0;position:relative}
+  .serum-vitrin{display:block;margin-top:28px;border-radius:20px;overflow:hidden;border:1px solid var(--hair2);background:#eceef0;position:relative}
   .serum-vitrin img{width:100%;display:block}
   .serum-vitrin::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 90px rgba(16,12,6,.18);pointer-events:none}
 
@@ -309,6 +309,7 @@
     .burger{display:block;z-index:96;position:relative}
     .nav-cta .btn{display:none}
     .duo,.duo.flip{grid-template-columns:1fr;gap:36px}
+    .tri{grid-template-columns:1fr;gap:18px}
     .gains{grid-template-columns:1fr}.gal{grid-template-columns:1fr 1fr;grid-auto-rows:180px}
     .contact{grid-template-columns:1fr;gap:34px}
     .stickbar{display:grid}
@@ -319,7 +320,26 @@
     .topbar .wrap{justify-content:center}.topbar .tb2{display:none}
     .topbar{font-size:10.5px}.topbar .wrap span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   }
-  @media(max-width:560px){.areas{grid-template-columns:1fr 1fr}.serums{grid-template-columns:1fr 1fr}.hero-cta .btn{width:100%}}
+  @media(max-width:560px){
+    .areas{grid-template-columns:1fr 1fr;gap:12px}
+    .serums{grid-template-columns:1fr 1fr;gap:12px}
+    .hero-cta .btn{width:100%}
+    .tcard{padding:28px 22px}
+    .gain{padding:24px 20px}
+    .vids{grid-template-columns:minmax(0,320px)}
+    .roi-calc{padding:26px 20px}
+    .roi-row{font-size:14px}
+    .stats{gap:12px}
+    .stat{padding:22px 8px}
+    .area{padding:22px 12px}
+    .serum{padding:22px 16px}
+    .wrap{padding:0 18px}
+    .kicker{letter-spacing:.22em}
+    .hero-badges{gap:12px 20px;font-size:12.5px}
+    .cmp th,.cmp td{padding:12px 14px;font-size:13.5px}
+    .marq span{font-size:17px;gap:44px}
+    .marq-in{gap:44px}
+  }
 </style>
 </head>
 <body>
@@ -607,9 +627,9 @@
       <div class="serum rv" style="transition-delay:.24s"><div class="sv">Solüsyon 04</div><h3>Firming</h3><p>Sıkılaştırıcı, kontur destekleyici</p></div>
       <div class="serum rv" style="transition-delay:.32s"><div class="sv">Solüsyon 05</div><h3>Hyaluronic</h3><p>Derin nemlendirme ve dolgunluk</p></div>
     </div>
-    <div class="serum-vitrin rv">
+    <a class="serum-vitrin rv" href="assets/gorseller/goldpen-mezoeffect.jpg">
       <img src="assets/gorseller/goldpen-mezoeffect.jpg" alt="mezoeffect mezocomplex solüsyon ailesi — Antiaging, Brightening, Hair-Revit, Firming ve Hyaluronic Acid kutu ve flakonları" loading="lazy">
-    </div>
+    </a>
   </div>
 </section>
 
@@ -976,11 +996,11 @@
     lbGoster();
   }
   document.addEventListener('click', function(e){
-    var a = e.target.closest('.gal a, .tanit a');
+    var a = e.target.closest('.gal a, .tanit a, a.serum-vitrin');
     if (!a) return;
     e.preventDefault();
     var kap = a.closest('.gal, .tanit');
-    var grup = [].slice.call(kap.querySelectorAll('a'));
+    var grup = kap ? [].slice.call(kap.querySelectorAll('a')) : [a];
     lbAc(grup, grup.indexOf(a));
   });
   document.getElementById('lbKapatBtn').addEventListener('click', lbKapat);
