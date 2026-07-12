@@ -216,7 +216,7 @@
   footer p{max-width:620px;margin:6px auto}
 
   /* ---------- lightbox ---------- */
-  .lb{position:fixed;inset:0;z-index:200;background:rgba(8,7,5,.93);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:56px 84px}
+  .lb{position:fixed;inset:0;z-index:200;background:rgba(8,7,5,.93);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:56px 84px;touch-action:none;overscroll-behavior:contain}
   .lb.on{display:flex;animation:lbin .35s ease}
   @keyframes lbin{from{opacity:0}to{opacity:1}}
   .lb img{max-width:min(90vw,1200px);max-height:76vh;border-radius:14px;border:1px solid var(--hair);box-shadow:0 30px 90px rgba(0,0,0,.65);background:#161208}
@@ -995,10 +995,12 @@
     lbListe = grup; lbIx = ix;
     lbGoster();
     lb.classList.add('on');
+    document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
   }
   function lbKapat(){
     lb.classList.remove('on');
+    document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
     lbImg.src = '';
   }
@@ -1026,6 +1028,7 @@
     else if (e.key === 'ArrowRight') lbAdim(1);
   });
   var lbTx = null;
+  lb.addEventListener('touchmove', function(e){ e.preventDefault(); }, {passive:false});
   lb.addEventListener('touchstart', function(e){ lbTx = e.touches[0].clientX; }, {passive:true});
   lb.addEventListener('touchend', function(e){
     if (lbTx === null) return;
