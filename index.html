@@ -207,6 +207,25 @@
   footer .lgo{font-size:17px;margin-bottom:14px}
   footer p{max-width:620px;margin:6px auto}
 
+  /* ---------- lightbox ---------- */
+  .lb{position:fixed;inset:0;z-index:200;background:rgba(8,7,5,.93);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:56px 84px}
+  .lb.on{display:flex;animation:lbin .35s ease}
+  @keyframes lbin{from{opacity:0}to{opacity:1}}
+  .lb img{max-width:min(90vw,1200px);max-height:76vh;border-radius:14px;border:1px solid var(--hair);box-shadow:0 30px 90px rgba(0,0,0,.65);background:#161208}
+  .lb-cap{color:var(--muted);font-size:13.5px;letter-spacing:.06em;text-align:center;max-width:82vw}
+  .lb-cap b{color:var(--gold2);font-weight:600}
+  .lb-x,.lb-ok{border:1px solid var(--hair);background:rgba(201,163,67,.08);color:var(--champ);cursor:pointer;display:grid;place-items:center;border-radius:50%;transition:background .25s;font-family:var(--sans)}
+  .lb-x:hover,.lb-ok:hover{background:rgba(201,163,67,.22)}
+  .lb-x{position:absolute;top:18px;right:22px;width:46px;height:46px;font-size:19px}
+  .lb-ok{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;font-size:26px;color:var(--gold2);user-select:none}
+  .lb-onceki{left:20px}.lb-sonraki{right:20px}
+  @media(max-width:640px){
+    .lb{padding:52px 8px}
+    .lb-ok{width:40px;height:40px;font-size:20px}
+    .lb-onceki{left:8px}.lb-sonraki{right:8px}
+    .lb img{max-height:66vh}
+  }
+
   /* ---------- yüzen / sabit CTA ---------- */
   .wa-float{position:fixed;right:22px;bottom:88px;z-index:80;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 30px rgba(37,211,102,.4);transition:transform .3s}
   .wa-float:hover{transform:scale(1.08)}
@@ -797,6 +816,15 @@
   <a class="s2" href="https://wa.me/905332853077?text=Merhaba%2C%20Gold%20Pen%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">WhatsApp</a>
 </div>
 
+<!-- lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Görsel görüntüleyici">
+  <button class="lb-x" id="lbKapatBtn" aria-label="Kapat">✕</button>
+  <button class="lb-ok lb-onceki" id="lbOnceki" aria-label="Önceki görsel">‹</button>
+  <img id="lbImg" src="" alt="">
+  <p class="lb-cap" id="lbCap"></p>
+  <button class="lb-ok lb-sonraki" id="lbSonraki" aria-label="Sonraki görsel">›</button>
+</div>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -918,6 +946,61 @@
       }
     });
   });
+
+  // lightbox: galeri + tanıtım şeridi
+  var lb = document.getElementById('lb');
+  var lbImg = document.getElementById('lbImg');
+  var lbCap = document.getElementById('lbCap');
+  var lbListe = [], lbIx = 0;
+  function lbGoster(){
+    var a = lbListe[lbIx];
+    var im = a.querySelector('img');
+    lbImg.src = a.href;
+    lbImg.alt = im ? im.alt : '';
+    lbCap.innerHTML = '<b>' + (lbIx + 1) + ' / ' + lbListe.length + '</b>&ensp;' + lbImg.alt;
+  }
+  function lbAc(grup, ix){
+    lbListe = grup; lbIx = ix;
+    lbGoster();
+    lb.classList.add('on');
+    document.body.style.overflow = 'hidden';
+  }
+  function lbKapat(){
+    lb.classList.remove('on');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+  function lbAdim(d){
+    if (!lbListe.length) return;
+    lbIx = (lbIx + d + lbListe.length) % lbListe.length;
+    lbGoster();
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('.gal a, .tanit a');
+    if (!a) return;
+    e.preventDefault();
+    var kap = a.closest('.gal, .tanit');
+    var grup = [].slice.call(kap.querySelectorAll('a'));
+    lbAc(grup, grup.indexOf(a));
+  });
+  document.getElementById('lbKapatBtn').addEventListener('click', lbKapat);
+  document.getElementById('lbOnceki').addEventListener('click', function(){ lbAdim(-1); });
+  document.getElementById('lbSonraki').addEventListener('click', function(){ lbAdim(1); });
+  lb.addEventListener('click', function(e){ if (e.target === lb) lbKapat(); });
+  document.addEventListener('keydown', function(e){
+    if (!lb.classList.contains('on')) return;
+    if (e.key === 'Escape') lbKapat();
+    else if (e.key === 'ArrowLeft') lbAdim(-1);
+    else if (e.key === 'ArrowRight') lbAdim(1);
+  });
+  var lbTx = null;
+  lb.addEventListener('touchstart', function(e){ lbTx = e.touches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend', function(e){
+    if (lbTx === null) return;
+    var fark = e.changedTouches[0].clientX - lbTx;
+    if (Math.abs(fark) > 40) lbAdim(fark < 0 ? 1 : -1);
+    lbTx = null;
+  }, {passive:true});
 
   // scrollspy
   if (IOok) {
