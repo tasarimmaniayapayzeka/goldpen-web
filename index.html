@@ -101,6 +101,10 @@
   .rv-l{transform:translateX(-40px)} .rv-r{transform:translateX(40px)}
   .rv-l.on,.rv-r.on{transform:none}
   @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.shine,.btn-gold::before,.scrolldn{animation:none}}
+  /* foto modu (?foto=1): ekran görüntüsü/yazdırma için animasyonsuz tam görünüm */
+  html.foto{scroll-behavior:auto}
+  html.foto .rv{opacity:1;transform:none;filter:none;transition:none}
+  html.foto *{animation:none!important;transition:none!important}
 
   /* ---------- 3 teknoloji ---------- */
   .tri{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
@@ -256,8 +260,11 @@
     .roi{grid-template-columns:1fr;gap:36px}.edu{grid-template-columns:1fr 1fr}
   }
   @media(max-width:840px){
-    .menu{position:fixed;inset:0;top:0;background:rgba(10,9,8,.97);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:30px;font-size:17px;transform:translateY(-100%);transition:transform .5s cubic-bezier(.16,1,.3,1);z-index:95}
-    .menu.open{transform:none}
+    header{backdrop-filter:none;background:rgba(10,9,8,.96)}
+    header.dark{background:rgba(10,9,8,.97)}
+    .hero::before{background:radial-gradient(700px 380px at 30% 26%,rgba(201,163,67,.14),transparent 60%),linear-gradient(180deg,rgba(10,9,8,.72),rgba(10,9,8,.86) 70%,var(--bg))}
+    .menu{position:fixed;inset:0;top:0;background:rgba(10,9,8,.97);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:30px;font-size:17px;transform:translateY(-100%);visibility:hidden;transition:transform .5s cubic-bezier(.16,1,.3,1),visibility 0s .5s;z-index:95}
+    .menu.open{transform:none;visibility:visible;transition:transform .5s cubic-bezier(.16,1,.3,1),visibility 0s}
     .menu a{color:var(--champ)}
     .burger{display:block;z-index:96;position:relative}
     .nav-cta .btn{display:none}
@@ -270,6 +277,7 @@
     .quiz{padding:34px 22px}
     section{padding:76px 0}
     .topbar .wrap{justify-content:center}.topbar .tb2{display:none}
+    .topbar{font-size:10.5px}.topbar .wrap span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   }
   @media(max-width:560px){.areas{grid-template-columns:1fr 1fr}.serums{grid-template-columns:1fr 1fr}.hero-cta .btn{width:100%}}
 </style>
@@ -308,7 +316,7 @@
       <a href="#iletisim">İletişim</a>
     </nav>
     <div class="nav-cta">
-      <a href="tel:+905332853077" class="btn btn-gold btn-sm">✆ Hemen Ara</a>
+      <a href="tel:+905332853077" class="btn btn-gold btn-sm">📞Hemen Ara</a>
       <button class="burger" id="burger" aria-label="Menü">☰</button>
     </div>
   </div>
@@ -325,7 +333,7 @@
       <h1 class="rv" style="transition-delay:.1s">Kliniklerde<br><em class="goldtxt shine">Altın Vuruş</em> Dönemi</h1>
       <p class="sub rv" style="transition-delay:.2s"><b>Gerçek altın yalıtımlı iğne uçları</b> ile serum uygulaması, EMS mikro akım ve LED fototerapiyi tek kalemde birleştiren profesyonel cilt yenileme sistemi.</p>
       <div class="hero-cta rv" style="transition-delay:.3s">
-        <a href="tel:+905332853077" class="btn btn-gold">✆ Fiyat &amp; Teklif Alın</a>
+        <a href="tel:+905332853077" class="btn btn-gold">📞Fiyat &amp; Teklif Alın</a>
         <a href="https://wa.me/905332853077?text=Merhaba%2C%20Gold%20Pen%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="btn btn-wa">WhatsApp'tan Yazın</a>
       </div>
       <div class="hero-badges rv" style="transition-delay:.4s">
@@ -420,7 +428,7 @@
         <li><i>◆</i><span><b>Dokunmatik panel</b> — hız, LED ve EMS tek dokunuşla</span></li>
         <li><i>◆</i><span><b>Şarj standı ile kablosuz</b> — kesintisiz seans akışı</span></li>
       </ul>
-      <a href="tel:+905332853077" class="btn btn-gold">✆ Cihaz Hakkında Bilgi Alın</a>
+      <a href="tel:+905332853077" class="btn btn-gold">📞Cihaz Hakkında Bilgi Alın</a>
     </div>
   </div>
 </section>
@@ -616,7 +624,7 @@
         <p class="q-res" id="qres"></p>
         <div class="q-opts">
           <a class="btn btn-gold" id="qwa" href="#" target="_blank" rel="noopener">WhatsApp'tan Protokolü Alın</a>
-          <a class="btn btn-line" href="tel:+905332853077">✆ Telefonla Sorun</a>
+          <a class="btn btn-line" href="tel:+905332853077">📞Telefonla Sorun</a>
         </div>
       </div>
     </div>
@@ -668,13 +676,13 @@
       <p style="color:var(--muted);font-weight:300;margin:10px 0 6px">Fiyat, teklif ve demo için bize ulaşın:</p>
       <a href="tel:+905332853077" class="c-big goldtxt shine">0533 285 30 77</a>
       <div class="hero-cta" style="margin-top:22px">
-        <a href="tel:+905332853077" class="btn btn-gold">✆ Hemen Arayın</a>
+        <a href="tel:+905332853077" class="btn btn-gold">📞Hemen Arayın</a>
         <a href="https://wa.me/905332853077?text=Merhaba%2C%20Gold%20Pen%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="btn btn-wa">WhatsApp'tan Yazın</a>
       </div>
     </div>
     <div class="rv-r rv">
       <div class="crow"><span class="ci">📍</span><span><b>Bakırköy Showroom</b><small>Çebi Apartmanı, İncirli Cd. Ülkü Sk. No:3 D:1, 34147 Bakırköy / İstanbul</small></span></div>
-      <div class="crow"><span class="ci">✆</span><span><b>Bilgi &amp; Sipariş Hattı</b><small><a href="tel:+905332853077">0533 285 30 77</a></small></span></div>
+      <div class="crow"><span class="ci">📞</span><span><b>Bilgi &amp; Sipariş Hattı</b><small><a href="tel:+905332853077">0533 285 30 77</a></small></span></div>
       <div class="crow"><span class="ci">✉</span><span><b>Instagram</b><small><a href="https://www.instagram.com/goldpentr/" target="_blank" rel="noopener">@goldpentr</a> — uygulama videoları ve kampanyalar</small></span></div>
       <div class="crow"><span class="ci">◆</span><span><b>MediEst Group — Medikal &amp; Technology</b><small>Gold Pen Türkiye Distribütörü</small></span></div>
     </div>
@@ -695,7 +703,7 @@
   <svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-1.5c1.7.9 3.6 1.4 5.8 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.8 0-3.5-.5-5-1.3l-.4-.2-4.9.9.9-4.7-.2-.4c-1-1.6-1.5-3.4-1.5-5.1 0-5.5 4.5-10 10-10s10 4.5 10 10-4.4 10.8-8.9 10.8zm5.5-7.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.2s-.8 1-.9 1.2c-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.5 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.2 3.1 1.3 3.3c.2.2 2.3 3.6 5.7 5 .8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.3-.6-.4z"/></svg>
 </a>
 <div class="stickbar">
-  <a class="s1" href="tel:+905332853077">✆ Hemen Ara</a>
+  <a class="s1" href="tel:+905332853077">📞Hemen Ara</a>
   <a class="s2" href="https://wa.me/905332853077?text=Merhaba%2C%20Gold%20Pen%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">WhatsApp</a>
 </div>
 
@@ -713,6 +721,14 @@
 
 <script>
 (function(){
+  // foto modu: ?foto=1 ile animasyonsuz tam görünüm (+ &scroll=N ile anlık konum)
+  if (location.search.indexOf('foto') > -1) {
+    document.documentElement.classList.add('foto');
+    document.querySelectorAll('[data-cnt]').forEach(function(el){ el.textContent = el.dataset.cnt; });
+    var sm = location.search.match(/scroll=(\d+)/);
+    if (sm) window.scrollTo(0, +sm[1]);
+  }
+
   // header koyulaşma
   var hd = document.getElementById('hd');
   addEventListener('scroll', function(){ hd.classList.toggle('dark', scrollY > 40); }, {passive:true});
