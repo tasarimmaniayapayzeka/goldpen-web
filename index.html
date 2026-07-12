@@ -234,6 +234,18 @@
   .roi-total .goldtxt{font-size:30px;font-weight:700}
   .edu{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
 
+  /* ---------- tanıtım görselleri şeridi ---------- */
+  .tanit-wrap{position:relative}
+  .tanit{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 4px 18px;scrollbar-width:thin;scrollbar-color:var(--gold3) transparent}
+  .tanit::-webkit-scrollbar{height:6px}
+  .tanit::-webkit-scrollbar-thumb{background:var(--gold3);border-radius:99px}
+  .tanit::-webkit-scrollbar-track{background:rgba(201,163,67,.08);border-radius:99px}
+  .tanit a{flex:0 0 auto;scroll-snap-align:center;border:1px solid var(--hair2);border-radius:18px;overflow:hidden;background:var(--panel);transition:transform .4s,border-color .4s}
+  .tanit a:hover{transform:translateY(-6px);border-color:var(--hair)}
+  .tanit img{height:clamp(420px,58vh,600px);width:auto;display:block}
+  .tanit-ipucu{text-align:center;color:var(--muted);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
+  @media(max-width:840px){.tanit img{height:70vw}}
+
   /* ---------- uygulama videoları ---------- */
   .vids{display:grid;grid-template-columns:repeat(2,minmax(0,290px));gap:22px;justify-content:center}
   .vids .vf{position:relative;aspect-ratio:9/16;border-radius:20px;overflow:hidden;border:1px solid var(--hair2);background:#000}
@@ -583,6 +595,17 @@
       <a href="assets/gorseller/REN_3753.jpg" target="_blank"><img src="assets/gorseller/REN_3753.jpg" alt="Gold Pen iğne ucu" loading="lazy"></a>
       <a href="assets/gorseller/REN_3755.jpg" target="_blank"><img src="assets/gorseller/REN_3755.jpg" alt="Gold Pen aksesuar" loading="lazy"></a>
     </div>
+    <div id="tanitim" hidden>
+      <div class="sec-head" style="margin:76px auto 44px">
+        <span class="over rv">Tanıtım Görselleri</span>
+        <h2 class="rv">Gold Pen + <em class="goldtxt">Mezoeffect</em> protokolü</h2>
+      </div>
+      <div class="tanit-wrap rv">
+        <div class="tanit" id="tanitSerit"></div>
+        <p class="tanit-ipucu">◆ Kaydırarak inceleyin — büyütmek için tıklayın ◆</p>
+      </div>
+    </div>
+
     <div class="sec-head" style="margin:76px auto 44px">
       <span class="over rv">Uygulama Videoları</span>
       <h2 class="rv">Gold Pen <em class="goldtxt">sahada</em></h2>
@@ -770,6 +793,38 @@
     }, {threshold:.6});
     document.querySelectorAll('[data-cnt]').forEach(function(el){ cio.observe(el); });
   }
+
+  // tanıtım görselleri: klasörde ne varsa otomatik yükle (tanitim-1..8 .jpg/.png/.webp)
+  (function(){
+    var serit = document.getElementById('tanitSerit');
+    var kutu = document.getElementById('tanitim');
+    var uzantilar = ['jpg', 'png', 'webp'];
+    for (var n = 1; n <= 8; n++) {
+      (function(no){
+        var u = 0;
+        function dene(){
+          if (u >= uzantilar.length) return;
+          var yol = 'assets/gorseller/tanitim/tanitim-' + no + '.' + uzantilar[u++];
+          var im = new Image();
+          im.onload = function(){
+            var a = document.createElement('a');
+            a.href = yol; a.target = '_blank'; a.rel = 'noopener';
+            a.dataset.no = no;
+            im.alt = 'Gold Pen tanıtım görseli ' + no;
+            im.loading = 'lazy';
+            a.appendChild(im);
+            var sonraki = null;
+            [].some.call(serit.children, function(c){ if (+c.dataset.no > no) { sonraki = c; return true; } return false; });
+            serit.insertBefore(a, sonraki);
+            kutu.hidden = false;
+          };
+          im.onerror = dene;
+          im.src = yol;
+        }
+        dene();
+      })(n);
+    }
+  })();
 
   // protokol sihirbazı
   var qd = {hedef:'', kim:''};
