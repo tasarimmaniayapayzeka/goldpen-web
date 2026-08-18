@@ -378,7 +378,7 @@
     </a>
     <nav class="menu" id="menu">
       <a href="#teknoloji">Teknoloji</a>
-      <a href="#kazanimlar">Kazanımlar</a>
+      <a href="#kazanimlar">Özellikler</a>
       <a href="#uygulamalar">Uygulamalar</a>
       <a href="#sac">Saç</a>
       <a href="#serumlar">Serumlar</a>
@@ -469,7 +469,7 @@
 <section id="kazanimlar">
   <div class="wrap">
     <div class="sec-head">
-      <span class="over rv">Kazanımlar</span>
+      <span class="over rv">Özellikler</span>
       <h2 class="rv">Gold Pen ile <em class="goldtxt">neler kazanırsınız?</em></h2>
       <p class="rv">Tek seansta üç teknolojinin birleşen gücü — ciltten saça uzanan geniş bir etki alanı.</p>
     </div>
@@ -519,14 +519,14 @@
       <article class="tcard rv">
         <div class="tnum">14 PİN</div>
         <div class="tico"><svg viewBox="0 0 24 24"><path d="M4 20c2-4 4-6 8-6s6 2 8 6M12 14V4M9 7l3-3 3 3"/></svg></div>
-        <h3>14 Pin Nano İğne</h3>
+        <h3>14 Pin</h3>
         <p>Saç protokolünün başlığı: saç köklerini güçlendirir, dökülmeyi azaltır, zayıflayan kökleri canlandırır.</p>
         <div class="tt">Saç &amp; saçlı deri uygulamaları</div>
       </article>
       <article class="tcard rv" style="transition-delay:.12s">
         <div class="tnum">25 PİN</div>
         <div class="tico"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="1.2"/><circle cx="12" cy="6" r="1.2"/><circle cx="18" cy="6" r="1.2"/><circle cx="6" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="18" cy="12" r="1.2"/><circle cx="6" cy="18" r="1.2"/><circle cx="12" cy="18" r="1.2"/><circle cx="18" cy="18" r="1.2"/></svg></div>
-        <h3>25 Pin Nano İğne</h3>
+        <h3>25 Pin</h3>
         <p>Yüz yenilemenin iş atı: ince çizgiler, gözenek görünümü ve cilt tonu eşitleme uygulamaları için.</p>
         <div class="tt">İnce çizgi · gözenek · ton eşitleme</div>
       </article>
@@ -765,43 +765,6 @@
   </div>
 </section>
 
-<!-- PROTOKOL SİHİRBAZI -->
-<section id="protokol" style="padding-top:60px">
-  <div class="wrap">
-    <div class="sec-head" style="margin-bottom:40px">
-      <span class="over rv">1 Dakikalık Sihirbaz</span>
-      <h2 class="rv">Size uygun <em class="goldtxt">protokolü bulun</em></h2>
-    </div>
-    <div class="quiz rv">
-      <div class="q-bar"><i id="qbar"></i></div>
-      <div class="q-step on" data-s="0">
-        <div class="q-q">Öncelikli hedefiniz nedir?</div>
-        <div class="q-opts">
-          <button class="q-opt">Cilt gençleştirme</button>
-          <button class="q-opt">Akne izleri</button>
-          <button class="q-opt">Leke / ton eşitsizliği</button>
-          <button class="q-opt">Saç dökülmesi</button>
-        </div>
-      </div>
-      <div class="q-step" data-s="1">
-        <div class="q-q">Sizi nasıl tanıyalım?</div>
-        <div class="q-opts">
-          <button class="q-opt">Güzellik merkezi / klinik işletiyorum</button>
-          <button class="q-opt">Uygulama yaptırmak istiyorum</button>
-        </div>
-      </div>
-      <div class="q-step" data-s="2">
-        <div class="q-q">Protokolünüz hazır ✦</div>
-        <p class="q-res" id="qres"></p>
-        <div class="q-opts">
-          <a class="btn btn-gold" id="qwa" href="#" target="_blank" rel="noopener">WhatsApp'tan Protokolü Alın</a>
-          <a class="btn btn-line" href="tel:+905332853077">📞Telefonla Sorun</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- SSS -->
 <section class="alt" id="sss">
   <div class="wrap">
@@ -980,34 +943,6 @@
     }
     yokla(1);
   })();
-
-  // protokol sihirbazı
-  var qd = {hedef:'', kim:''};
-  var qsteps = [].slice.call(document.querySelectorAll('.q-step'));
-  var qbar = document.getElementById('qbar');
-  var qrec = {
-    'Cilt gençleştirme': 'Anti-Aging / Firming solüsyonlu, EMS + kırmızı LED destekli yüz gençleştirme protokolü',
-    'Akne izleri': 'Mikro kanal + mavi LED destekli, akne izi odaklı yenileme protokolü',
-    'Leke / ton eşitsizliği': 'Brightening solüsyonlu, ton eşitleme ve aydınlatma protokolü',
-    'Saç dökülmesi': '14 Pin nano iğne başlıklı + Hair-Revit solüsyonlu saç canlandırma protokolü'
-  };
-  function qgo(n){
-    qsteps.forEach(function(s, i){ s.classList.toggle('on', i === n); });
-    qbar.style.width = (n / (qsteps.length - 1)) * 100 + '%';
-  }
-  document.querySelectorAll('button.q-opt').forEach(function(b){
-    b.addEventListener('click', function(){
-      var st = +b.closest('.q-step').dataset.s;
-      if (st === 0) { qd.hedef = b.textContent.trim(); qgo(1); }
-      else {
-        qd.kim = b.textContent.trim();
-        document.getElementById('qres').innerHTML = 'Size önerimiz: <b>' + qrec[qd.hedef] + '</b>. Detayları ve fiyat bilgisini hemen paylaşalım.';
-        var msg = 'Merhaba, Gold Pen hakkında bilgi almak istiyorum. Hedefim: ' + qd.hedef + '. (' + qd.kim + ')';
-        document.getElementById('qwa').href = 'https://wa.me/905332853077?text=' + encodeURIComponent(msg);
-        qgo(2);
-      }
-    });
-  });
 
   // lightbox: galeri + tanıtım şeridi
   var lb = document.getElementById('lb');
