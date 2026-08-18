@@ -1,0 +1,24 @@
+---
+# cPanel Git™ Version Control dağıtım tarifi — Gold Pen
+# ------------------------------------------------------------
+# Sunucu: mt-lunar.guzelhosting.com (LiteSpeed). Bu sunucuda rsync ÇALIŞMIYOR,
+# yalnızca /bin/cp ve /bin/rm kullanılır (drramazanersoy.tr'de öğrenildi).
+#
+# Kabuk globu (*) gizli dosyaları KAPSAMAZ — bu işimize geliyor:
+# .git, .gitignore, .cpanel.yml kendiliğinden dışarıda kalıyor.
+#
+# Kurulum (bir kez): Git Version Control → Create Repository
+#   Clone URL : https://github.com/tasarimmaniayapayzeka/goldpen-web.git
+#   Path      : repositories/goldpen-web
+#   Name      : goldpen-web
+# Sonraki her yayın: GitHub'a push → Update from Remote → Deploy HEAD Commit
+deployment:
+  tasks:
+    - export DEPLOYPATH=$HOME/public_html
+    - /bin/mkdir -p $DEPLOYPATH
+    # site dosyaları: index.html + assets/ (glob gizli dosyaları atlar)
+    - /bin/cp -R * $DEPLOYPATH/
+    # sunucuda işi olmayan geliştirme dosyaları
+    - /bin/rm -f $DEPLOYPATH/server.js
+    - /bin/rm -f $DEPLOYPATH/README.md
+    - /bin/echo "Yayin: $(date)" >> $HOME/deploy.log
